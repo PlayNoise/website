@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YAML Syntax Highlighting</title>
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4/dist/js-yaml.min.js"></script>
+    <!-- CodeMirror CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.0/codemirror.min.css">
+    <!-- CodeMirror YAML mode -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.0/theme/material-darker.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .instrument-button {
+            background-color: #4CAF50; /* Green background */
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            margin: 5px;
+            font-size: 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .instrument-button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+    <!-- Placeholder for CodeMirror editor -->
+    <textarea id="yamlEditor" style="display: none;"></textarea>
+
+    <!-- Buttons with musical instrument icons -->
+    <button class="instrument-button" id="guitarButton">
+        <i class="fas fa-guitar"></i> Guitar
+    </button>
+    <button class="instrument-button" id="trumpetButton">
+        <i class="fas fa-trumpet"></i> Trumpet
+    </button>
+    <button class="instrument-button" id="banjoButton">
+        <i class="fas fa-banjo"></i> Banjo
+    </button>
+    <button class="instrument-button" id="celloButton">
+        <i class="fas fa-cello"></i> Cello
+    </button>
+
+    <!-- CodeMirror JavaScript -->
+    <script src="https://playnoise.org/pn-library.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.0/mode/yaml/yaml.min.js"></script>
+
+    <script>
+        // Initialize CodeMirror
+        const editor = CodeMirror.fromTextArea(document.getElementById('yamlEditor'), {
+            mode: 'yaml', // Set mode to YAML
+            theme: 'material-darker', // Optional: Use a theme
+            lineNumbers: true, // Show line numbers
+            indentUnit: 2, // Set indentation to 2 spaces
+            autofocus: true // Auto-focus the editor
+        });
+
+        // Set initial YAML content
+        editor.setValue(`
+name: Turkish March
+key: C
+length: 0.125
+envelope: drop
+harmonic: stringed
+volume: 500
+sections: [
+    { C1: [b4, a4, g4#, a4],
+      C2: [b4, a4, g4#, a4] },
+
+    { C1: [2:c5, 2:z,     d5, c5,  b4, c5],
+      C2: [2:a3, 2:c4-e4, 2:c4-e4, 2:c4-e4]},
+]
+        `);
+
+        // Function to play music with the specified instrument
+        function playBanjo() {
+            const yamlContent = editor.getValue();
+            const songData = jsyaml.load(yamlContent);
+
+            if (typeof PN === "undefined") {
+                throw new Error("PN library is not loaded");
+            }
+
+            PN.instrument("banjo");
+            PN.setVolume(0.5);
+            const song = PN.createSong(songData);
+            PN.save(song);
+        }
+
+        function playGuitar() {
+            const yamlContent = editor.getValue();
+            const songData = jsyaml.load(yamlContent);
+
+            if (typeof PN === "undefined") {
+                throw new Error("PN library is not loaded");
+            }
+
+            PN.instrument("thickbass");
+            PN.setVolume(0.5);
+            const song = PN.createSong(songData);
+            PN.save(song);
+        }
+
+        function playCello() {
+            const yamlContent = editor.getValue();
+            const songData = jsyaml.load(yamlContent);
+
+            if (typeof PN === "undefined") {
+                throw new Error("PN library is not loaded");
+            }
+
+            PN.instrument("cello");
+            PN.setVolume(0.5);
+            const song = PN.createSong(songData);
+            PN.save(song);
+        }
+
+        function playTrumpet() {
+            const yamlContent = editor.getValue();
+            const songData = jsyaml.load(yamlContent);
+
+            if (typeof PN === "undefined") {
+                throw new Error("PN library is not loaded");
+            }
+
+            PN.instrument("trumpet");
+            PN.setVolume(0.5);
+            const song = PN.createSong(songData);
+            PN.save(song);
+        }
+
+        // Add event listeners to the buttons
+        document.getElementById('guitarButton').addEventListener('click', playGuitar);
+        document.getElementById('trumpetButton').addEventListener('click', playTrumpet);
+        document.getElementById('banjoButton').addEventListener('click', playBanjo);
+        document.getElementById('celloButton').addEventListener('click', playCello);
+
+        // Function to load the YAML file content into the editor
+        function loadYAML(filePath) {
+            fetch(filePath)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Could not load ${filePath}`);
+                    }
+                    return response.text();
+                })
+                .then(yamlContent => {
+                    editor.setValue(yamlContent); // Update CodeMirror editor with the YAML file content
+                })
+                .catch(error => {
+                    console.error("Error loading YAML file:", error);
+                    alert("Failed to load YAML file. Check the console for details.");
+                });
+        }
+
+        // Attach event listeners to the YAML links to load the files into the editor
+
+
+    </script>
+
+<h2>Select a Music Score:</h2>
+<ul>
+    <a href="#" class="yaml-link" data-file="scores/beauty.yaml">Beauty</a>
+    , <a href="#" class="yaml-link" data-file="scores/cheek.yaml">Cheek</a>
+    , <a href="#" class="yaml-link" data-file="scores/every.yaml">Every</a>
+    , <a href="#" class="yaml-link" data-file="scores/march.yaml">March</a>
+    , <a href="#" class="yaml-link" data-file="scores/memory.yaml">Memory</a>
+    , <a href="#" class="yaml-link" data-file="scores/scale.yaml">Scale</a>
+    , <a href="#" class="yaml-link" data-file="scores/sweet.yaml">Sweet</a>
+    , <a href="#" class="yaml-link" data-file="scores/tears.full.yaml">Tears (Full)</a>
+    ,<a href="#" class="yaml-link" data-file="scores/tears.yaml">Tears</a>
+</ul>
+<script>
+document.querySelectorAll('.yaml-link').forEach(link => {
+    link.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default link behavior
+        const filePath = this.getAttribute('data-file'); // Get the file path from the data-file attribute
+        loadYAML(filePath); // Load the selected YAML file into the editor
+    });
+});
+    console.log("JavaScript is loaded!");    
+</script>
+
+</body>
+</html>
