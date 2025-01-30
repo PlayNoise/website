@@ -165,16 +165,6 @@ $mostRecentFile = getMostRecentFile($uploadDir, $_SESSION['user_id']);
       Your browser does not support the audio element.
   </audio>
 </div>
-<!-- Instrument Selection Dropdown -->
-<div class="container text-center mt-3">
-    <label for="instrumentSelect">Choose an Instrument:</label>
-    <select id="instrumentSelect" class="form-select w-50">
-        <option value="banjo">Banjo</option>
-        <option value="guitar">Guitar</option>
-        <option value="trumpet">Trumpet</option>
-    </select>
-</div>
-
 </div>
 
 </div>
@@ -184,6 +174,17 @@ $mostRecentFile = getMostRecentFile($uploadDir, $_SESSION['user_id']);
 <!-- User Files Section -->
 <section id="user-files" class="py-5">
     <div class="container">
+<!-- Instrument Selection Dropdown -->
+<div class="container text-center mt-3">
+    <label for="instrumentSelect">Choose an Instrument:</label>
+    <select id="instrumentSelect" class="form-select w-50 mx-auto">
+        <option value="trumpet">Trumpet</option>
+        <option value="funcklead">FunckLead</option>
+        <option value="cello">cello</option>        
+        <option value="thickbass">Guitar</option>
+        <option value="banjo">Banjo</option>
+    </select>
+</div>
         <h2 class="text-center">Your Original Audio</h2>
         <?php if ($mostRecentFile): ?>
             <div class="text-center">
@@ -196,6 +197,16 @@ $mostRecentFile = getMostRecentFile($uploadDir, $_SESSION['user_id']);
             <p class="text-center">You have not uploaded any files yet.</p>
         <?php endif; ?>
     </div>
+
+<!-- Embed iframe section -->
+  <div class="container">
+    <br/><br/>
+    <h2 class="text-center">Try YAML to Audio Conversion  </h2>
+    <div class="text-center">
+      <iframe src="iframe.html" width="100%" height="460px" style="border: none;"></iframe>
+    </div>
+  </div>
+
 </section>
 <!-- Features Section -->
 <section id="features" class="py-5">
@@ -488,6 +499,13 @@ sections:
 
 
 </script>
+    <script>
+document.querySelector('iframe').addEventListener('load', function() {
+    window.scrollTo(0, 0); // Scroll to the top when iframe is loaded
+});
+        
+    </script>
+
 <script src="./js/bootstrap.bundle.min.js"></script>
 <script src="./js/prism.min.js"></script>
 
