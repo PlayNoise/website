@@ -1,0 +1,16 @@
+name: Spring
+key: E major
+length: 0.25
+envelope: bright
+harmonic: violin
+volume: 600
+sections: [
+    { C1: [e4, g#4, b4, e5],
+      C2: [g#4, b4, e5, g#4] },
+
+    { C1: [a4, b4, e5, a5],
+      C2: [b4, e5, a5, b4] },
+
+    { C1: [e5, f#5, g#5, a5],
+      C2: [f#5, g#5, a5, f#5] }
+]

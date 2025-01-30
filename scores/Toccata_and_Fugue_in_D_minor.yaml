@@ -1,0 +1,16 @@
+name: Toccata and Fugue in D minor
+key: D minor
+length: 0.25
+envelope: dramatic
+harmonic: organ
+volume: 700
+sections: [
+    { C1: [d4, a4, f4, d5],
+      C2: [a4, f4, d5, a4] },
+
+    { C1: [d5, a5, f5, d6],
+      C2: [a5, f5, d6, a5] },
+
+    { C1: [f5, g5, a5, d6],
+      C2: [g5, d6, a5, g5] }
+]

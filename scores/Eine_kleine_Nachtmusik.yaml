@@ -1,0 +1,16 @@
+name: Eine kleine Nachtmusik
+key: G major
+length: 0.25
+envelope: lively
+harmonic: string quartet
+volume: 500
+sections: [
+    { C1: [g4, d5, b4, g4], 
+      C2: [d5, b4, g4, d5] },
+
+    { C1: [g4, d5, b4, g4],
+      C2: [g4, d5, b4, g4] },
+
+    { C1: [c5, d5, e5, f5],
+      C2: [g5, a5, b5, c6] }
+]

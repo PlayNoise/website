@@ -1,0 +1,16 @@
+name: Canon in D
+key: D major
+length: 0.5
+envelope: smooth
+harmonic: string ensemble
+volume: 500
+sections: [
+    { C1: [d4, a4, d5, f#4],
+      C2: [a4, f#4, d5, a4] },
+
+    { C1: [g4, d5, b4, g4],
+      C2: [d5, b4, g4, d5] },
+
+    { C1: [a4, e5, c#5, a4],
+      C2: [e5, c#5, a4, e5] }
+]

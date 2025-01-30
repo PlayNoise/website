@@ -1,0 +1,22 @@
+name: Moonlight Sonata
+key: C# minor
+length: 0.25
+envelope: soft
+harmonic: piano
+volume: 400
+sections: [
+    { C1: [c#3, e3, g#3, c#4], 
+      C2: [c#2, g#2, c#3] },
+
+    { C1: [e3, g#3, b3, e4], 
+      C2: [e2, b2, e3] },
+
+    { C1: [g#3, b3, d#4, g#4], 
+      C2: [g#2, d#3, g#3] },
+
+    { C1: [b3, d#4, f#4, b4], 
+      C2: [b2, f#3, b3] },
+
+    { C1: [c#4, e4, g#4, c#5], 
+      C2: [c#3, g#3, c#4] }
+]

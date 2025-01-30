@@ -1,0 +1,16 @@
+name: Nocturne in E-flat major
+key: E-flat major
+length: 0.25
+envelope: soft
+harmonic: piano
+volume: 400
+sections: [
+    { C1: [eb4, g4, bb4, eb5], 
+      C2: [g4, bb4, eb5, g4] },
+
+    { C1: [f4, ab4, c5, f5], 
+      C2: [ab4, c5, f5, ab4] },
+
+    { C1: [bb4, eb5, g5, bb5], 
+      C2: [eb5, g5, bb5, eb5] }
+]
